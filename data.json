@@ -1,0 +1,177 @@
+{
+  "meta": {
+    "source": "EU MRV 2024 (EMSA / THETIS-MRV), Full emission reports",
+    "source_version": "2024-v203-11042026-EU MRV Publication of information (2).xlsx",
+    "gwp": {
+      "ch4": 28,
+      "n2o": 265,
+      "basis": "IPCC AR5"
+    },
+    "generated": "2026-07-02"
+  },
+  "totals": {
+    "vessels": 14115,
+    "vessels_reporting_ch4": 12928,
+    "ch4_t": 65128.6,
+    "n2o_t": 8274.8,
+    "co2_mt": 147.0,
+    "co2eq_mt": 151.02,
+    "uplift_pct": 2.73,
+    "ch4_co2eq_mt": 1.82,
+    "n2o_co2eq_mt": 2.19
+  },
+  "lng": {
+    "vessels": 355,
+    "ch4_t": 40797.3,
+    "share_of_fleet_ch4_pct": 62.6,
+    "uplift_pct": 14.9
+  },
+  "at_berth": {
+    "ch4_t": 2765.4,
+    "n2o_t": 515.3,
+    "co2_mt": 7.29,
+    "vessels_with_ch4": 8570
+  },
+  "by_type": [
+    {
+      "type": "LNG carrier",
+      "n": 355,
+      "ch4_t": 40797.3,
+      "n2o_t": 367.2,
+      "ch4_berth_t": 953.8,
+      "co2_mt": 8.34,
+      "co2eq_mt": 9.58,
+      "uplift_pct": 14.86
+    },
+    {
+      "type": "Ro-pax ship",
+      "n": 423,
+      "ch4_t": 7987.3,
+      "n2o_t": 773.4,
+      "ch4_berth_t": 339.6,
+      "co2_mt": 13.7,
+      "co2eq_mt": 14.129,
+      "uplift_pct": 3.13
+    },
+    {
+      "type": "Passenger ship",
+      "n": 211,
+      "ch4_t": 7130.0,
+      "n2o_t": 383.0,
+      "ch4_berth_t": 1001.6,
+      "co2_mt": 6.885,
+      "co2eq_mt": 7.186,
+      "uplift_pct": 4.37
+    },
+    {
+      "type": "Container ship",
+      "n": 2159,
+      "ch4_t": 2236.6,
+      "n2o_t": 3065.0,
+      "ch4_berth_t": 142.5,
+      "co2_mt": 53.489,
+      "co2eq_mt": 54.363,
+      "uplift_pct": 1.64
+    },
+    {
+      "type": "Oil tanker",
+      "n": 1972,
+      "ch4_t": 1811.6,
+      "n2o_t": 1033.2,
+      "ch4_berth_t": 97.4,
+      "co2_mt": 18.132,
+      "co2eq_mt": 18.457,
+      "uplift_pct": 1.79
+    },
+    {
+      "type": "Gas carrier",
+      "n": 368,
+      "ch4_t": 1737.1,
+      "n2o_t": 141.4,
+      "ch4_berth_t": 74.8,
+      "co2_mt": 2.552,
+      "co2eq_mt": 2.638,
+      "uplift_pct": 3.37
+    },
+    {
+      "type": "Vehicle carrier",
+      "n": 469,
+      "ch4_t": 1137.7,
+      "n2o_t": 244.6,
+      "ch4_berth_t": 62.8,
+      "co2_mt": 4.336,
+      "co2eq_mt": 4.433,
+      "uplift_pct": 2.23
+    },
+    {
+      "type": "Chemical tanker",
+      "n": 1450,
+      "ch4_t": 742.7,
+      "n2o_t": 490.5,
+      "ch4_berth_t": 24.2,
+      "co2_mt": 8.569,
+      "co2eq_mt": 8.72,
+      "uplift_pct": 1.76
+    },
+    {
+      "type": "Ro-ro ship",
+      "n": 228,
+      "ch4_t": 661.5,
+      "n2o_t": 305.8,
+      "ch4_berth_t": 48.3,
+      "co2_mt": 5.339,
+      "co2eq_mt": 5.438,
+      "uplift_pct": 1.86
+    },
+    {
+      "type": "General cargo ship",
+      "n": 1364,
+      "ch4_t": 392.5,
+      "n2o_t": 313.7,
+      "ch4_berth_t": 4.9,
+      "co2_mt": 5.497,
+      "co2eq_mt": 5.591,
+      "uplift_pct": 1.71
+    },
+    {
+      "type": "Bulk carrier",
+      "n": 4465,
+      "ch4_t": 241.3,
+      "n2o_t": 863.0,
+      "ch4_berth_t": 6.2,
+      "co2_mt": 15.033,
+      "co2eq_mt": 15.268,
+      "uplift_pct": 1.57
+    },
+    {
+      "type": "Other ship types",
+      "n": 416,
+      "ch4_t": 211.0,
+      "n2o_t": 143.2,
+      "ch4_berth_t": 6.9,
+      "co2_mt": 2.506,
+      "co2eq_mt": 2.55,
+      "uplift_pct": 1.75
+    },
+    {
+      "type": "Container/ro-ro cargo ship",
+      "n": 69,
+      "ch4_t": 19.9,
+      "n2o_t": 71.6,
+      "ch4_berth_t": 0.9,
+      "co2_mt": 1.244,
+      "co2eq_mt": 1.263,
+      "uplift_pct": 1.57
+    },
+    {
+      "type": "Refrigerated cargo carrier",
+      "n": 132,
+      "ch4_t": 14.6,
+      "n2o_t": 52.5,
+      "ch4_berth_t": 0.5,
+      "co2_mt": 0.913,
+      "co2eq_mt": 0.928,
+      "uplift_pct": 1.57
+    }
+  ]
+}
