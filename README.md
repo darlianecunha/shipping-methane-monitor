@@ -63,7 +63,7 @@ For GitHub Pages: Settings → Pages → deploy from branch, root folder.
 
 ## Author
 
-**Darliane Ribeiro Cunha, PhD** — Professor, Federal University of Maranhão (UFMA).
+**Darliane Ribeiro Cunha, PhD**.
 Research: maritime decarbonisation, port sustainability analytics, SDG implementation.
 
 Related projects: [SDG Port Hub](https://sdgporthub.com) ·
