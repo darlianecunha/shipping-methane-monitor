@@ -1,354 +1,421 @@
 {
-  "meta": {
-    "source": "EU MRV 2024 (EMSA / THETIS-MRV), Full emission reports",
-    "source_version": "2024-v203-11042026-EU MRV Publication of information (2).xlsx",
-    "gwp": {
-      "ch4": 28,
-      "n2o": 265,
-      "basis": "IPCC AR5"
-    },
-    "generated": "2026-07-04"
+ "meta": {
+  "source": "EU MRV 2024 & 2025 (EMSA / THETIS-MRV), full emission reports",
+  "source_files": {
+   "2024": "mrv_2024.xlsx",
+   "2025": "mrv_2025.xlsx"
   },
-  "totals": {
-    "vessels": 14115,
-    "vessels_reporting_ch4": 12928,
-    "ch4_t": 65128.6,
-    "n2o_t": 8274.8,
-    "co2_mt": 147.0,
-    "co2eq_mt": 151.02,
-    "uplift_pct": 2.73,
-    "ch4_co2eq_mt": 1.82,
-    "n2o_co2eq_mt": 2.19
+  "gwp": {
+   "ch4": 28,
+   "n2o": 265,
+   "basis": "IPCC AR5"
   },
-  "lng": {
-    "vessels": 355,
-    "ch4_t": 40797.3,
-    "share_of_fleet_ch4_pct": 62.6,
-    "uplift_pct": 14.9
+  "generated": "2026-07-04",
+  "latest_year": 2025
+ },
+ "yoy": {
+  "matched_vessels": 11453,
+  "gases": {
+   "co2": {
+    "y2024": 131320730,
+    "y2025": 124674279,
+    "pct": -5.1
+   },
+   "ch4": {
+    "y2024": 58093,
+    "y2025": 70427,
+    "pct": 21.2
+   },
+   "n2o": {
+    "y2024": 7390,
+    "y2025": 6990,
+    "pct": -5.4
+   }
   },
-  "at_berth": {
-    "ch4_t": 2765.4,
-    "n2o_t": 515.3,
-    "co2_mt": 7.29,
-    "vessels_with_ch4": 8570
+  "lng_ch4": {
+   "vessels": 293,
+   "y2024": 34793,
+   "y2025": 41145,
+   "pct": 18.3
   },
-  "by_type": [
-    {
-      "type": "LNG carrier",
-      "n": 355,
-      "ch4_t": 40797.3,
-      "n2o_t": 367.2,
-      "ch4_berth_t": 953.8,
-      "co2_mt": 8.34,
-      "co2eq_mt": 9.58,
-      "uplift_pct": 14.86
-    },
-    {
-      "type": "Ro-pax ship",
-      "n": 423,
-      "ch4_t": 7987.3,
-      "n2o_t": 773.4,
-      "ch4_berth_t": 339.6,
-      "co2_mt": 13.7,
-      "co2eq_mt": 14.129,
-      "uplift_pct": 3.13
-    },
-    {
-      "type": "Passenger ship",
-      "n": 211,
-      "ch4_t": 7130.0,
-      "n2o_t": 383.0,
-      "ch4_berth_t": 1001.6,
-      "co2_mt": 6.885,
-      "co2eq_mt": 7.186,
-      "uplift_pct": 4.37
-    },
-    {
-      "type": "Container ship",
-      "n": 2159,
-      "ch4_t": 2236.6,
-      "n2o_t": 3065.0,
-      "ch4_berth_t": 142.5,
-      "co2_mt": 53.489,
-      "co2eq_mt": 54.363,
-      "uplift_pct": 1.64
-    },
-    {
-      "type": "Oil tanker",
-      "n": 1972,
-      "ch4_t": 1811.6,
-      "n2o_t": 1033.2,
-      "ch4_berth_t": 97.4,
-      "co2_mt": 18.132,
-      "co2eq_mt": 18.457,
-      "uplift_pct": 1.79
-    },
-    {
-      "type": "Gas carrier",
-      "n": 368,
-      "ch4_t": 1737.1,
-      "n2o_t": 141.4,
-      "ch4_berth_t": 74.8,
-      "co2_mt": 2.552,
-      "co2eq_mt": 2.638,
-      "uplift_pct": 3.37
-    },
-    {
-      "type": "Vehicle carrier",
-      "n": 469,
-      "ch4_t": 1137.7,
-      "n2o_t": 244.6,
-      "ch4_berth_t": 62.8,
-      "co2_mt": 4.336,
-      "co2eq_mt": 4.433,
-      "uplift_pct": 2.23
-    },
-    {
-      "type": "Chemical tanker",
-      "n": 1450,
-      "ch4_t": 742.7,
-      "n2o_t": 490.5,
-      "ch4_berth_t": 24.2,
-      "co2_mt": 8.569,
-      "co2eq_mt": 8.72,
-      "uplift_pct": 1.76
-    },
-    {
-      "type": "Ro-ro ship",
-      "n": 228,
-      "ch4_t": 661.5,
-      "n2o_t": 305.8,
-      "ch4_berth_t": 48.3,
-      "co2_mt": 5.339,
-      "co2eq_mt": 5.438,
-      "uplift_pct": 1.86
-    },
-    {
-      "type": "General cargo ship",
-      "n": 1364,
-      "ch4_t": 392.5,
-      "n2o_t": 313.7,
-      "ch4_berth_t": 4.9,
-      "co2_mt": 5.497,
-      "co2eq_mt": 5.591,
-      "uplift_pct": 1.71
-    },
-    {
-      "type": "Bulk carrier",
-      "n": 4465,
-      "ch4_t": 241.3,
-      "n2o_t": 863.0,
-      "ch4_berth_t": 6.2,
-      "co2_mt": 15.033,
-      "co2eq_mt": 15.268,
-      "uplift_pct": 1.57
-    },
-    {
-      "type": "Other ship types",
-      "n": 416,
-      "ch4_t": 211.0,
-      "n2o_t": 143.2,
-      "ch4_berth_t": 6.9,
-      "co2_mt": 2.506,
-      "co2eq_mt": 2.55,
-      "uplift_pct": 1.75
-    },
-    {
-      "type": "Container/ro-ro cargo ship",
-      "n": 69,
-      "ch4_t": 19.9,
-      "n2o_t": 71.6,
-      "ch4_berth_t": 0.9,
-      "co2_mt": 1.244,
-      "co2eq_mt": 1.263,
-      "uplift_pct": 1.57
-    },
-    {
-      "type": "Refrigerated cargo carrier",
-      "n": 132,
-      "ch4_t": 14.6,
-      "n2o_t": 52.5,
-      "ch4_berth_t": 0.5,
-      "co2_mt": 0.913,
-      "co2eq_mt": 0.928,
-      "uplift_pct": 1.57
-    }
-  ],
-  "companies": {
-    "top": [
-      {
-        "name": "Seapeak Maritime Limited",
-        "vessels": 31,
-        "ch4_t": 6543.7,
-        "share_pct": 10.0,
-        "main_type": "LNG carrier",
-        "segment": "lng"
-      },
-      {
-        "name": "Dynagas Ltd",
-        "vessels": 16,
-        "ch4_t": 6502.0,
-        "share_pct": 10.0,
-        "main_type": "LNG carrier",
-        "segment": "lng"
-      },
-      {
-        "name": "MOL LNG SHIP MANAGEMENT PTE. LTD.",
-        "vessels": 14,
-        "ch4_t": 3889.6,
-        "share_pct": 6.0,
-        "main_type": "LNG carrier",
-        "segment": "lng"
-      },
-      {
-        "name": "Knutsen OAS Shipping AS",
-        "vessels": 21,
-        "ch4_t": 3445.1,
-        "share_pct": 5.3,
-        "main_type": "LNG carrier",
-        "segment": "lng"
-      },
-      {
-        "name": "MARAN GAS MARITIME INC.",
-        "vessels": 28,
-        "ch4_t": 2802.9,
-        "share_pct": 4.3,
-        "main_type": "LNG carrier",
-        "segment": "lng"
-      },
-      {
-        "name": "Costa Crociere S.p.A.",
-        "vessels": 19,
-        "ch4_t": 2557.4,
-        "share_pct": 3.9,
-        "main_type": "Passenger ship",
-        "segment": "passenger"
-      },
-      {
-        "name": "Balearia Eurolineas Maritimas SA",
-        "vessels": 19,
-        "ch4_t": 2201.4,
-        "share_pct": 3.4,
-        "main_type": "Ro-pax ship",
-        "segment": "passenger"
-      },
-      {
-        "name": "GasLog LNG Services Ltd.",
-        "vessels": 18,
-        "ch4_t": 1938.5,
-        "share_pct": 3.0,
-        "main_type": "LNG carrier",
-        "segment": "lng"
-      },
-      {
-        "name": "MSC Cruise Management UK Ltd",
-        "vessels": 20,
-        "ch4_t": 1914.0,
-        "share_pct": 2.9,
-        "main_type": "Passenger ship",
-        "segment": "passenger"
-      },
-      {
-        "name": "Cool Company Management AS",
-        "vessels": 8,
-        "ch4_t": 1588.3,
-        "share_pct": 2.4,
-        "main_type": "LNG carrier",
-        "segment": "lng"
-      },
-      {
-        "name": "Carnival Plc",
-        "vessels": 10,
-        "ch4_t": 1546.1,
-        "share_pct": 2.4,
-        "main_type": "Passenger ship",
-        "segment": "passenger"
-      },
-      {
-        "name": "Thenamaris LNG Inc",
-        "vessels": 9,
-        "ch4_t": 1242.2,
-        "share_pct": 1.9,
-        "main_type": "LNG carrier",
-        "segment": "lng"
-      },
-      {
-        "name": "NLNG Ship Management Ltd",
-        "vessels": 11,
-        "ch4_t": 1216.2,
-        "share_pct": 1.9,
-        "main_type": "LNG carrier",
-        "segment": "lng"
-      },
-      {
-        "name": "Capital Gas Ship Management Corp",
-        "vessels": 11,
-        "ch4_t": 1208.1,
-        "share_pct": 1.9,
-        "main_type": "Gas carrier",
-        "segment": "other"
-      },
-      {
-        "name": "BW Fleet Management A/S",
-        "vessels": 21,
-        "ch4_t": 991.6,
-        "share_pct": 1.5,
-        "main_type": "LNG carrier",
-        "segment": "lng"
-      }
-    ],
-    "n_companies": 3396,
-    "top10_share_pct": 51.3
-  },
-  "slip": {
-    "vessels": 351,
-    "bin_width": 2,
-    "bin_max": 32,
-    "counts": [
-      107,
-      0,
-      2,
-      10,
-      21,
-      3,
-      1,
-      8,
-      45,
-      41,
-      14,
-      9,
-      16,
-      25,
-      36,
-      13
-    ],
-    "median": 17.0,
-    "p25": 0.05,
-    "p75": 24.3,
-    "share_low_pct": 30.5,
-    "share_high_pct": 23.6,
-    "refs": [
-      {
-        "kg": 2,
-        "label": "0.2% EU default · high-pressure diesel 2-stroke"
-      },
-      {
-        "kg": 17,
-        "label": "1.7% EU default · LNG Otto 2-stroke"
-      },
-      {
-        "kg": 31,
-        "label": "3.1% EU default · LNG Otto 4-stroke"
-      }
-    ],
-    "fumes_kg": 64
-  },
-  "ets2026": {
-    "price_eur": 80,
-    "ch4_t": 30532,
-    "n2o_t": 4817,
-    "co2eq_mt": 2.13,
-    "cost_meur": 170.5,
-    "lng_share_pct": 15.5
+  "new_entrants": {
+   "vessels": 5211,
+   "ch4_t": 14353,
+   "note": "2025 extended MRV scope (general cargo 400-5,000 GT and offshore ships)"
   }
+ },
+ "totals": {
+  "vessels": 16664,
+  "vessels_reporting_ch4": 14730,
+  "ch4_t": 84779.2,
+  "n2o_t": 8365.1,
+  "co2_mt": 149.47,
+  "co2eq_mt": 154.06,
+  "uplift_pct": 3.07,
+  "ch4_co2eq_mt": 2.37,
+  "n2o_co2eq_mt": 2.22
+ },
+ "lng": {
+  "vessels": 406,
+  "ch4_t": 50452.7,
+  "share_of_fleet_ch4_pct": 59.5,
+  "uplift_pct": 15.6
+ },
+ "at_berth": {
+  "ch4_t": 3868.1,
+  "n2o_t": 471.4,
+  "co2_mt": 8.14,
+  "vessels_with_ch4": 14193
+ },
+ "by_type": [
+  {
+   "type": "LNG carrier",
+   "n": 406,
+   "ch4_t": 50452.7,
+   "n2o_t": 438.3,
+   "ch4_berth_t": 1254.2,
+   "co2_mt": 9.829,
+   "co2eq_mt": 11.358,
+   "uplift_pct": 15.55
+  },
+  {
+   "type": "Container ship",
+   "n": 2368,
+   "ch4_t": 12421.1,
+   "n2o_t": 2929.1,
+   "ch4_berth_t": 909.0,
+   "co2_mt": 51.526,
+   "co2eq_mt": 52.65,
+   "uplift_pct": 2.18
+  },
+  {
+   "type": "Ro-pax ship",
+   "n": 406,
+   "ch4_t": 7556.2,
+   "n2o_t": 756.2,
+   "ch4_berth_t": 341.7,
+   "co2_mt": 13.434,
+   "co2eq_mt": 13.846,
+   "uplift_pct": 3.07
+  },
+  {
+   "type": "Passenger ship (Cruise Passenger ship)",
+   "n": 206,
+   "ch4_t": 5659.3,
+   "n2o_t": 393.6,
+   "ch4_berth_t": 816.6,
+   "co2_mt": 7.053,
+   "co2eq_mt": 7.315,
+   "uplift_pct": 3.73
+  },
+  {
+   "type": "Oil tanker",
+   "n": 1989,
+   "ch4_t": 2040.1,
+   "n2o_t": 945.1,
+   "ch4_berth_t": 128.6,
+   "co2_mt": 16.597,
+   "co2eq_mt": 16.905,
+   "uplift_pct": 1.85
+  },
+  {
+   "type": "Vehicle carrier",
+   "n": 529,
+   "ch4_t": 2032.0,
+   "n2o_t": 237.2,
+   "ch4_berth_t": 209.5,
+   "co2_mt": 4.269,
+   "co2eq_mt": 4.388,
+   "uplift_pct": 2.81
+  },
+  {
+   "type": "Gas carrier",
+   "n": 413,
+   "ch4_t": 1826.3,
+   "n2o_t": 157.3,
+   "ch4_berth_t": 77.3,
+   "co2_mt": 2.834,
+   "co2eq_mt": 2.927,
+   "uplift_pct": 3.27
+  },
+  {
+   "type": "Chemical tanker",
+   "n": 1615,
+   "ch4_t": 691.6,
+   "n2o_t": 498.6,
+   "ch4_berth_t": 28.5,
+   "co2_mt": 8.715,
+   "co2eq_mt": 8.866,
+   "uplift_pct": 1.74
+  },
+  {
+   "type": "Ro-ro ship",
+   "n": 232,
+   "ch4_t": 596.5,
+   "n2o_t": 303.6,
+   "ch4_berth_t": 42.8,
+   "co2_mt": 5.305,
+   "co2eq_mt": 5.402,
+   "uplift_pct": 1.83
+  },
+  {
+   "type": "General cargo ship",
+   "n": 2709,
+   "ch4_t": 528.5,
+   "n2o_t": 497.9,
+   "ch4_berth_t": 11.2,
+   "co2_mt": 8.775,
+   "co2eq_mt": 8.922,
+   "uplift_pct": 1.67
+  },
+  {
+   "type": "Passenger ship",
+   "n": 32,
+   "ch4_t": 467.9,
+   "n2o_t": 16.7,
+   "ch4_berth_t": 11.7,
+   "co2_mt": 0.31,
+   "co2eq_mt": 0.327,
+   "uplift_pct": 5.66
+  },
+  {
+   "type": "Bulk carrier",
+   "n": 4719,
+   "ch4_t": 234.8,
+   "n2o_t": 820.7,
+   "ch4_berth_t": 9.6,
+   "co2_mt": 14.307,
+   "co2eq_mt": 14.531,
+   "uplift_pct": 1.57
+  },
+  {
+   "type": "Other ship types",
+   "n": 394,
+   "ch4_t": 134.3,
+   "n2o_t": 127.2,
+   "ch4_berth_t": 16.2,
+   "co2_mt": 2.229,
+   "co2eq_mt": 2.267,
+   "uplift_pct": 1.68
+  },
+  {
+   "type": "Other ship types (Offshore)",
+   "n": 451,
+   "ch4_t": 106.1,
+   "n2o_t": 128.7,
+   "ch4_berth_t": 9.9,
+   "co2_mt": 2.288,
+   "co2eq_mt": 2.325,
+   "uplift_pct": 1.62
+  },
+  {
+   "type": "Container/ro-ro cargo ship",
+   "n": 66,
+   "ch4_t": 17.5,
+   "n2o_t": 63.0,
+   "ch4_berth_t": 0.8,
+   "co2_mt": 1.096,
+   "co2eq_mt": 1.113,
+   "uplift_pct": 1.57
+  },
+  {
+   "type": "Refrigerated cargo carrier",
+   "n": 125,
+   "ch4_t": 14.0,
+   "n2o_t": 50.5,
+   "ch4_berth_t": 0.5,
+   "co2_mt": 0.878,
+   "co2eq_mt": 0.891,
+   "uplift_pct": 1.57
+  }
+ ],
+ "companies": {
+  "top": [
+   {
+    "name": "Seapeak Maritime Limited",
+    "vessels": 36,
+    "ch4_t": 7023.6,
+    "share_pct": 8.3,
+    "main_type": "LNG carrier",
+    "segment": "lng"
+   },
+   {
+    "name": "CMA SHIPS SAS",
+    "vessels": 53,
+    "ch4_t": 5502.2,
+    "share_pct": 6.5,
+    "main_type": "Container ship",
+    "segment": "other"
+   },
+   {
+    "name": "Dynagas Ltd",
+    "vessels": 23,
+    "ch4_t": 5320.0,
+    "share_pct": 6.3,
+    "main_type": "LNG carrier",
+    "segment": "lng"
+   },
+   {
+    "name": "GasLog LNG Services Ltd.",
+    "vessels": 19,
+    "ch4_t": 4129.8,
+    "share_pct": 4.9,
+    "main_type": "LNG carrier",
+    "segment": "lng"
+   },
+   {
+    "name": "MOL GLOBAL SHIP MANAGEMENT PTE. LTD.",
+    "vessels": 33,
+    "ch4_t": 3271.1,
+    "share_pct": 3.9,
+    "main_type": "LNG carrier",
+    "segment": "lng"
+   },
+   {
+    "name": "MARAN GAS MARITIME INC.",
+    "vessels": 29,
+    "ch4_t": 3025.5,
+    "share_pct": 3.6,
+    "main_type": "LNG carrier",
+    "segment": "lng"
+   },
+   {
+    "name": "Knutsen OAS Shipping AS",
+    "vessels": 24,
+    "ch4_t": 2704.8,
+    "share_pct": 3.2,
+    "main_type": "LNG carrier",
+    "segment": "lng"
+   },
+   {
+    "name": "NLNG Ship Management Ltd",
+    "vessels": 12,
+    "ch4_t": 2446.1,
+    "share_pct": 2.9,
+    "main_type": "LNG carrier",
+    "segment": "lng"
+   },
+   {
+    "name": "Costa Crociere S.p.A.",
+    "vessels": 18,
+    "ch4_t": 2361.4,
+    "share_pct": 2.8,
+    "main_type": "Passenger ship (Cruise Passenger ship)",
+    "segment": "passenger"
+   },
+   {
+    "name": "MSC SHIPMANAGEMENT LIMITED",
+    "vessels": 239,
+    "ch4_t": 2208.0,
+    "share_pct": 2.6,
+    "main_type": "Container ship",
+    "segment": "other"
+   },
+   {
+    "name": "Balearia Eurolineas Maritimas SA",
+    "vessels": 21,
+    "ch4_t": 2051.7,
+    "share_pct": 2.4,
+    "main_type": "Ro-pax ship",
+    "segment": "passenger"
+   },
+   {
+    "name": "TMS Cardiff Gas Ltd.",
+    "vessels": 14,
+    "ch4_t": 1527.7,
+    "share_pct": 1.8,
+    "main_type": "LNG carrier",
+    "segment": "lng"
+   },
+   {
+    "name": "Bernhard Schulte Hellas SPLLC",
+    "vessels": 11,
+    "ch4_t": 1453.9,
+    "share_pct": 1.7,
+    "main_type": "LNG carrier",
+    "segment": "lng"
+   },
+   {
+    "name": "Capital Gas Ship Management Corp",
+    "vessels": 10,
+    "ch4_t": 1351.4,
+    "share_pct": 1.6,
+    "main_type": "Gas carrier",
+    "segment": "other"
+   },
+   {
+    "name": "Carnival Plc",
+    "vessels": 10,
+    "ch4_t": 1296.7,
+    "share_pct": 1.5,
+    "main_type": "Passenger ship (Cruise Passenger ship)",
+    "segment": "passenger"
+   }
+  ],
+  "n_companies": 3759,
+  "top10_share_pct": 44.8
+ },
+ "slip": {
+  "vessels": 393,
+  "bin_width": 2,
+  "bin_max": 32,
+  "counts": [
+   74,
+   1,
+   2,
+   15,
+   31,
+   15,
+   4,
+   19,
+   65,
+   73,
+   13,
+   8,
+   11,
+   24,
+   26,
+   12
+  ],
+  "median": 17.3,
+  "p25": 8.57,
+  "p75": 19.7,
+  "share_low_pct": 19.1,
+  "share_high_pct": 16.8,
+  "refs": [
+   {
+    "kg": 2,
+    "label": "0.2% EU default · high-pressure diesel 2-stroke"
+   },
+   {
+    "kg": 17,
+    "label": "1.7% EU default · LNG Otto 2-stroke"
+   },
+   {
+    "kg": 31,
+    "label": "3.1% EU default · LNG Otto 4-stroke"
+   }
+  ],
+  "fumes_kg": 64
+ },
+ "ets2026": {
+  "price_eur": 80,
+  "ch4_t": 30532,
+  "n2o_t": 4816,
+  "co2eq_mt": 2.13,
+  "cost_meur": 170.5,
+  "lng_share_pct": 15.5,
+  "basis_year": 2024
+ },
+ "y2024_totals": {
+  "vessels": 14151,
+  "vessels_reporting_ch4": 12956,
+  "ch4_t": 65278.9,
+  "n2o_t": 8281.6,
+  "co2_mt": 147.12,
+  "co2eq_mt": 151.15,
+  "uplift_pct": 2.73,
+  "ch4_co2eq_mt": 1.83,
+  "n2o_co2eq_mt": 2.19
+ }
 }

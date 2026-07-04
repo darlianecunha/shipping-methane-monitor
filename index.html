@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Beyond CO₂ — Verified Methane &amp; N₂O Emissions from EU Shipping (MRV 2024)</title>
-<meta name="description" content="First fleet-scale picture of verified CH₄ and N₂O emissions from ships, from the new EU MRV 2024 greenhouse-gas fields. 14,115 vessels, 65,129 t of methane, and the LNG methane-slip signature.">
+<title>Beyond CO₂ — Verified Methane &amp; N₂O Emissions from EU Shipping (MRV 2024–2025)</title>
+<meta name="description" content="Two years of verified CH₄ and N₂O emissions from ships under the EU MRV. Same fleet, one year apart: CO₂ down 5%, methane up 21%. The LNG methane-slip signature, company ranking and the 2026 ETS bill.">
 <meta property="og:title" content="Beyond CO₂ — Verified Methane &amp; N₂O from EU Shipping">
-<meta property="og:description" content="What the new EU MRV 2024 greenhouse-gas fields reveal: methane is concentrated in LNG carriers; fleet-wide, N₂O adds more warming than CH₄.">
+<meta property="og:description" content="What two years of EU MRV greenhouse-gas fields reveal: on the same ships, CO₂ fell 5.1% while verified methane rose 21.2%.">
 <meta property="og:type" content="website">
 <style>
 :root{--navy:#0b2239;--navy2:#12304d;--teal:#0fb5ba;--teald:#0a8f93;--ink:#1c2b36;--muted:#5b6b78;
@@ -52,12 +52,13 @@ background:#e4f4ec;color:#2fa36b}
 <body>
 <header>
   <div class="wrap">
-    <p class="eyebrow">EU MRV 2024 · New greenhouse-gas fields · Verified data</p>
+    <p class="eyebrow">EU MRV 2024–2025 · New greenhouse-gas fields · Verified data</p>
     <h1>Beyond CO₂: verified methane and nitrous-oxide emissions from ships calling at EU ports</h1>
     <p class="lead">Since reporting year 2024, the EU Monitoring, Reporting and Verification (MRV)
-    system publishes verified CH₄ and N₂O emissions per vessel, not just CO₂. This page gives a
-    first fleet-scale picture of those new fields: where the methane is, what CO₂-only accounting
-    misses, and what it means for LNG propulsion and shore power.</p>
+    system publishes verified CH₄ and N₂O emissions per vessel, not just CO₂. With the 2025 reports
+    now in, this observatory tracks two years of those fields: where the methane is, how it is
+    moving, what CO₂-only accounting misses, and what it means for LNG propulsion, shore power and
+    the 2026 ETS bill. Figures below show the latest reporting year (2025) unless stated.</p>
   </div>
 </header>
 
@@ -74,10 +75,25 @@ background:#e4f4ec;color:#2fa36b}
 
   <div class="note" id="headline-note"></div>
 
+  <h2 class="section">Same ships, one year apart</h2>
+  <p class="sub">Like-for-like comparison of the <span id="yy-n">–</span> vessels that filed full
+  reports in both 2024 and 2025. The fleet decarbonised on paper while its methane rose.</p>
+  <div class="grid">
+    <div class="box">
+      <h3>Verified change 2024 → 2025, same fleet</h3>
+      <p class="hint">Percentage change in verified emissions of the matched vessels.</p>
+      <div class="cwrap"><canvas id="c-yoy"></canvas></div>
+    </div>
+    <div class="box">
+      <h3>What it means</h3>
+      <div class="note" id="yoy-note" style="margin:6px 0 0"></div>
+    </div>
+  </div>
+
   <div class="grid">
     <div class="box">
       <h3>Methane by ship type</h3>
-      <p class="hint">Verified CH₄, tonnes in 2024. Methane is extremely concentrated.</p>
+      <p class="hint">Verified CH₄, tonnes in 2025. Methane is extremely concentrated.</p>
       <div class="cwrap"><canvas id="c-ch4"></canvas></div>
     </div>
     <div class="box">
@@ -112,7 +128,7 @@ background:#e4f4ec;color:#2fa36b}
   <p class="sub">Verified CH₄ by DoC holder (the company responsible under MRV). The top 10 of
   <span id="cp-n">–</span> companies hold <strong id="cp-share">–</strong> of all verified methane.</p>
   <div class="box tall" style="margin-bottom:10px">
-    <h3>Top 15 companies by verified CH₄, 2024</h3>
+    <h3>Top 15 companies by verified CH₄, 2025</h3>
     <p class="hint">Red: LNG-carrier operators · amber: cruise / ferry (LNG-fuelled passenger fleets) · navy: other</p>
     <div class="cwrap" style="height:380px"><canvas id="c-comp"></canvas></div>
   </div>
@@ -142,7 +158,7 @@ background:#e4f4ec;color:#2fa36b}
   <div class="note" id="ets-note"></div>
 
   <h2 class="section">Full breakdown by ship type</h2>
-  <p class="sub">Ship types with at least 20 full emission reports in 2024, sorted by verified methane.</p>
+  <p class="sub">Ship types with at least 20 full emission reports in 2025, sorted by verified methane.</p>
   <div class="box" style="margin-bottom:22px">
     <table class="data">
       <thead><tr><th>Ship type</th><th>Vessels</th><th>CH₄ (t)</th><th>N₂O (t)</th>
@@ -160,7 +176,7 @@ background:#e4f4ec;color:#2fa36b}
 <footer>
   <div class="wrap">
     <span>Developed by <strong>Darliane Cunha, PhD</strong></span>
-    <span>Data source: EMSA / THETIS-MRV, 2024 reporting period · <span class="pill">verified data</span></span>
+    <span>Data source: EMSA / THETIS-MRV, 2024 &amp; 2025 reporting periods · <span class="pill">verified data</span></span>
   </div>
 </footer>
 
@@ -199,8 +215,10 @@ background:#e4f4ec;color:#2fa36b}
 
     el("method-note").innerHTML =
       "Source: <strong>" + D.meta.source + "</strong> (file version " + D.meta.source_version +
-      "), the public dataset published by EMSA. Reporting year 2024 is the first in which CH₄ and " +
-      "N₂O are reported and verified per vessel under Regulation (EU) 2023/957. CO₂eq uses GWP₁₀₀ " +
+      "), the public dataset published by EMSA. Reporting year 2024 was the first in which CH₄ and " +
+      "N₂O are reported and verified per vessel under Regulation (EU) 2023/957; 2025 is the second, " +
+      "and also the first under the extended MRV scope. The year-on-year module compares only " +
+      "vessels present in both years. CO₂eq uses GWP₁₀₀ " +
       "values from IPCC AR5 (CH₄ = " + D.meta.gwp.ch4 + ", N₂O = " + D.meta.gwp.n2o +
       "), which this analysis confirmed empirically from the data itself. Only full emission " +
       "reports are included. Verified ≠ measured onboard: figures follow approved monitoring " +
@@ -241,6 +259,7 @@ background:#e4f4ec;color:#2fa36b}
           tooltip: { callbacks: { label: function (c) { return c.label + ": " + fmt(c.raw, 2) + " Mt"; } } } } }
     });
 
+    if (D.yoy) renderYoy(D);
     if (D.companies) renderCompanies(D);
     if (D.slip) renderSlip(D);
     if (D.ets2026) renderEts(D);
@@ -251,6 +270,37 @@ background:#e4f4ec;color:#2fa36b}
         "</td><td>" + fmt(r.co2_mt, 2) + "</td><td>" + fmt(r.co2eq_mt, 2) +
         "</td><td>+" + r.uplift_pct + "%</td></tr>";
     }).join("");
+  }
+
+  function renderYoy(D) {
+    var Y = D.yoy, G = Y.gases;
+    el("yy-n").textContent = fmt(Y.matched_vessels);
+    var rows = [
+      { l: "CO₂", v: G.co2.pct }, { l: "N₂O", v: G.n2o.pct },
+      { l: "CH₄ · whole matched fleet", v: G.ch4.pct },
+      { l: "CH₄ · LNG carriers (" + Y.lng_ch4.vessels + ")", v: Y.lng_ch4.pct }];
+    new Chart(el("c-yoy"), {
+      type: "bar",
+      data: { labels: rows.map(function (r) { return r.l; }),
+        datasets: [{ data: rows.map(function (r) { return r.v; }),
+          backgroundColor: rows.map(function (r) { return r.v > 0 ? BAD : "#2fa36b"; }),
+          borderRadius: 5 }] },
+      options: { responsive: true, maintainAspectRatio: false, indexAxis: "y",
+        scales: { x: { title: { display: true, text: "% change 2024 → 2025" } } },
+        plugins: { legend: { display: false },
+          tooltip: { callbacks: { label: function (c) {
+            return (c.raw > 0 ? "+" : "") + c.raw + "%"; } } } } }
+    });
+    el("yoy-note").innerHTML =
+      "<strong>Decarbonisation is trading CO₂ for methane.</strong> On the same " +
+      fmt(Y.matched_vessels) + " ships, verified CO₂ fell " + Math.abs(G.co2.pct) +
+      "% and N₂O fell " + Math.abs(G.n2o.pct) + "%, while verified CH₄ rose <strong>" +
+      G.ch4.pct + "%</strong> (" + fmt(G.ch4.y2024) + " → " + fmt(G.ch4.y2025) +
+      " t). LNG carriers alone went from " + fmt(Y.lng_ch4.y2024) + " to " +
+      fmt(Y.lng_ch4.y2025) + " t (+" + Y.lng_ch4.pct + "%) as more of the fleet burns gas. " +
+      "Separately, the 2025 scope extension added " + fmt(Y.new_entrants.vessels) +
+      " newly covered vessels (mostly smaller general cargo and offshore ships), bringing " +
+      fmt(Y.new_entrants.ch4_t) + " t of additional reported CH₄ outside this comparison.";
   }
 
   function renderCompanies(D) {
@@ -347,7 +397,9 @@ background:#e4f4ec;color:#2fa36b}
       " per allowance, ETS-scoped CH₄ and N₂O add <strong>€" + fmt(E.cost_meur, 1) +
       " million a year</strong> from 2026 (GWP₁₀₀ AR5). Only " + E.lng_share_pct +
       "% of that CO₂eq comes from LNG carriers — they sail mostly outside ETS scope — so the " +
-      "methane and N₂O bill lands across the entire fleet, not just the gas trade. Companies can " +
+      "methane and N₂O bill lands across the entire fleet, not just the gas trade. Basis: the " +
+      (E.basis_year || 2024) + " reporting-year file, the latest in which EMSA populates the " +
+      "ETS-scoped CH₄/N₂O fields (the surrender obligation starts with 2026 emissions). Companies can " +
       "be ranked against this cost in the companion tool " +
       "<a href='https://shipping-carbon-costs.vercel.app/' target='_blank' rel='noopener'>Shipping Carbon Costs</a>.";
   }
