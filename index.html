@@ -123,8 +123,9 @@ background:#e4f4ec;color:#2fa36b}
   exactly on the EU default slip factors, and the real-world FUMES average is off the chart.</p>
   <div class="box tall" style="margin-bottom:10px">
     <h3>Distribution of CH₄ intensity, LNG carriers</h3>
-    <p class="hint">Dashed lines: EU default slip factors by engine type. Arrow: ICCT FUMES
-    real-world average for LNG Otto 4-stroke engines (6.4% = 64 kg/t), twice the highest default.</p>
+    <p class="hint">Dashed lines: EU default slip factors — 0.2% high-pressure diesel 2-stroke,
+    1.7% LNG Otto 2-stroke, 3.1% LNG Otto 4-stroke. Red arrow: the ICCT FUMES real-world average
+    for LNG Otto 4-stroke engines (6.4% = 64 kg/t) is twice the highest default, beyond the axis.</p>
     <div class="cwrap" style="height:360px"><canvas id="c-slip"></canvas></div>
   </div>
   <div class="note" id="slip-note"></div>
@@ -287,25 +288,26 @@ background:#e4f4ec;color:#2fa36b}
     var pts = S.counts.map(function (c, i) { return { x: i * w + w / 2, y: c }; });
     var refLines = { id: "refLines", afterDraw: function (chart) {
       var ctx = chart.ctx, area = chart.chartArea, xs = chart.scales.x;
-      ctx.save();
+      // dashed vertical lines at the EU default slip factors, short labels above
       S.refs.forEach(function (r) {
         var x = xs.getPixelForValue(r.kg);
+        ctx.save();
         ctx.strokeStyle = "#5b6b78"; ctx.setLineDash([5, 4]); ctx.lineWidth = 1.2;
         ctx.beginPath(); ctx.moveTo(x, area.top); ctx.lineTo(x, area.bottom); ctx.stroke();
         ctx.setLineDash([]); ctx.fillStyle = "#5b6b78";
-        ctx.font = "600 10.5px 'Segoe UI',Arial";
-        ctx.translate(x - 4, area.top + 4); ctx.rotate(Math.PI / 2);
-        ctx.fillText(r.label, 0, 0); ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.font = "700 11px 'Segoe UI',Arial"; ctx.textAlign = "center";
+        ctx.fillText((r.kg / 10) + "% default", x, area.top - 6);
+        ctx.restore();
       });
-      // FUMES arrow, off scale to the right
-      var xr = area.right;
+      // FUMES arrow, pinned to the right edge (64 kg/t is off the scale)
+      ctx.save();
+      var xr = area.right, ym = area.top + 14;
       ctx.strokeStyle = BAD; ctx.fillStyle = BAD; ctx.lineWidth = 2;
-      var ym = area.top + 18;
-      ctx.beginPath(); ctx.moveTo(xr - 150, ym); ctx.lineTo(xr - 8, ym); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(xr - 60, ym); ctx.lineTo(xr - 8, ym); ctx.stroke();
       ctx.beginPath(); ctx.moveTo(xr - 8, ym - 5); ctx.lineTo(xr, ym);
       ctx.lineTo(xr - 8, ym + 5); ctx.closePath(); ctx.fill();
       ctx.font = "700 11px 'Segoe UI',Arial"; ctx.textAlign = "right";
-      ctx.fillText("FUMES real-world avg: 6.4% = " + S.fumes_kg + " kg/t →", xr - 4, ym + 16);
+      ctx.fillText("FUMES 6.4% = " + S.fumes_kg + " kg/t", xr - 66, ym + 4);
       ctx.restore();
     } };
     new Chart(el("c-slip"), {
@@ -313,6 +315,7 @@ background:#e4f4ec;color:#2fa36b}
       data: { datasets: [{ data: pts, backgroundColor: TEAL, borderRadius: 3,
         barPercentage: 1, categoryPercentage: 1 }] },
       options: { responsive: true, maintainAspectRatio: false, parsing: false,
+        layout: { padding: { top: 24 } },
         scales: { x: { type: "linear", min: 0, max: S.bin_max,
             title: { display: true, text: "kg CH₄ per tonne of fuel" }, grid: { display: false } },
           y: { title: { display: true, text: "LNG carriers" }, beginAtZero: true } },
