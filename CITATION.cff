@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this software or its data, please cite it as below."
+type: software
+title: "Shipping Methane Monitor: verified CH4 and N2O emissions from ships calling at EU ports (EU MRV 2024)"
+authors:
+  - family-names: "Cunha"
+    given-names: "Darliane Ribeiro"
+    # orcid: "https://orcid.org/SEU-ORCID-AQUI"
+version: 1.0.0
+date-released: 2026-07-02
+url: "https://shipping-methane-monitor.vercel.app/"
+license: CC-BY-4.0
+keywords:
+  - "methane"
+  - "methane slip"
+  - "N2O"
+  - "EU MRV"
+  - "shipping emissions"
+  - "LNG"
+  - "greenhouse gases"
+  - "maritime decarbonisation"
+  - "verified emissions"

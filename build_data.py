@@ -29,8 +29,14 @@ def col(prefix, berth=False):
     return [x for x in df.columns
             if x.startswith(prefix) and (("at berth" in x) == berth)][0]
 
+def ets_col(gas):
+    return [x for x in df.columns
+            if x.startswith(f"{gas} emissions to be reported under Directive 2003/87/EC")][0]
+
 d = pd.DataFrame({
     "type": df["Ship type"],
+    "company": df["Name.1"],   # DoC holder (second Name column in the file)
+    "fuel": pd.to_numeric(df["Total fuel consumption [m tonnes]"], errors="coerce"),
     "co2": pd.to_numeric(df["Total CO₂ emissions [m tonnes]"], errors="coerce"),
     "co2b": pd.to_numeric(df[col("CO₂ emissions which occurred", True)], errors="coerce"),
     "ch4": pd.to_numeric(df["Total CH₄ emissions [m tonnes]"], errors="coerce"),
@@ -38,6 +44,8 @@ d = pd.DataFrame({
     "n2o": pd.to_numeric(df["Total N₂O emissions [m tonnes]"], errors="coerce"),
     "n2ob": pd.to_numeric(df[col("N₂O emissions which occurred", True)], errors="coerce"),
     "co2eq": pd.to_numeric(df["Total CO₂eq emissions [m tonnes]"], errors="coerce"),
+    "ets_ch4": pd.to_numeric(df[ets_col("CH₄")], errors="coerce"),
+    "ets_n2o": pd.to_numeric(df[ets_col("N₂O")], errors="coerce"),
 })
 
 by_type = []
@@ -60,6 +68,69 @@ by_type.sort(key=lambda x: -x["ch4_t"])
 ch4_total = float(d["ch4"].sum())
 n2o_total = float(d["n2o"].sum())
 lng = d[d["type"] == "LNG carrier"]
+
+# ---- Module 1: who owns the methane (DoC holder ranking) ----------------
+PASSENGER = {"Passenger ship", "Passenger ship (Cruise Passenger ship)",
+             "Ro-pax ship", "Cruise ship"}
+companies = []
+for name, g in d.dropna(subset=["company"]).groupby("company"):
+    ch4 = float(g["ch4"].sum())
+    if ch4 <= 0:
+        continue
+    main = g.groupby("type")["ch4"].sum().idxmax()
+    companies.append({
+        "name": str(name).strip(),
+        "vessels": int(len(g)),
+        "ch4_t": round(ch4, 1),
+        "share_pct": round(ch4 / ch4_total * 100, 1),
+        "main_type": main,
+        "segment": ("lng" if main == "LNG carrier"
+                    else "passenger" if main in PASSENGER else "other"),
+    })
+companies.sort(key=lambda x: -x["ch4_t"])
+top15 = companies[:15]
+top10_share = round(sum(c["ch4_t"] for c in companies[:10]) / ch4_total * 100, 1)
+
+# ---- Module 2: methane-slip fingerprint (LNG carriers) ------------------
+li = lng[(lng["fuel"] > 0) & lng["ch4"].notna()].copy()
+li["kg_per_t"] = li["ch4"] / li["fuel"] * 1000   # kg CH4 per tonne of fuel
+BIN_W, BIN_MAX = 2, 32
+counts = [0] * (BIN_MAX // BIN_W)
+for v in li["kg_per_t"].clip(upper=BIN_MAX - 0.001):
+    counts[int(v // BIN_W)] += 1
+slip = {
+    "vessels": int(len(li)),
+    "bin_width": BIN_W,
+    "bin_max": BIN_MAX,
+    "counts": counts,
+    "median": round(float(li["kg_per_t"].median()), 1),
+    "p25": round(float(li["kg_per_t"].quantile(.25)), 2),
+    "p75": round(float(li["kg_per_t"].quantile(.75)), 1),
+    "share_low_pct": round(float((li["kg_per_t"] < 5).mean()) * 100, 1),
+    "share_high_pct": round(float((li["kg_per_t"] >= 25).mean()) * 100, 1),
+    # reference values in kg CH4 / t fuel (slip % x 10)
+    "refs": [
+        {"kg": 2,  "label": "0.2% EU default · high-pressure diesel 2-stroke"},
+        {"kg": 17, "label": "1.7% EU default · LNG Otto 2-stroke"},
+        {"kg": 31, "label": "3.1% EU default · LNG Otto 4-stroke"},
+    ],
+    "fumes_kg": 64,   # ICCT FUMES real-world average, LPDF 4-stroke: 6.4%
+}
+
+# ---- Module 3: the 2026 ETS methane bill --------------------------------
+ETS_PRICE = 80   # EUR per EUA, reference value (same as shipping-carbon-costs)
+ets_ch4_t = float(d["ets_ch4"].sum())
+ets_n2o_t = float(d["ets_n2o"].sum())
+ets_co2eq_mt = (ets_ch4_t * GWP_CH4 + ets_n2o_t * GWP_N2O) / 1e6
+ets2026 = {
+    "price_eur": ETS_PRICE,
+    "ch4_t": round(ets_ch4_t),
+    "n2o_t": round(ets_n2o_t),
+    "co2eq_mt": round(ets_co2eq_mt, 2),
+    "cost_meur": round(ets_co2eq_mt * ETS_PRICE, 1),
+    "lng_share_pct": round(float(lng["ets_ch4"].sum()) * GWP_CH4
+                           / (ets_co2eq_mt * 1e6) * 100, 1),
+}
 
 payload = {
     "meta": {
@@ -92,6 +163,10 @@ payload = {
         "vessels_with_ch4": int((d["ch4b"] > 0).sum()),
     },
     "by_type": by_type,
+    "companies": {"top": top15, "n_companies": len(companies),
+                  "top10_share_pct": top10_share},
+    "slip": slip,
+    "ets2026": ets2026,
 }
 
 (HERE / "data.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2),

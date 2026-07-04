@@ -1,5 +1,8 @@
 # Beyond CO₂ — Verified Methane & N₂O Emissions from EU Shipping (MRV 2024)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21144287.svg)](https://doi.org/10.5281/zenodo.21144287)
+
+
 First fleet-scale analysis of the **new greenhouse-gas fields in the EU MRV public dataset**.
 Since reporting year 2024, every vessel above 5,000 GT calling at EU ports reports **verified
 CH₄ and N₂O emissions** alongside CO₂ (Regulation (EU) 2023/957). This project aggregates those
@@ -23,6 +26,18 @@ Two results stand out. First, methane is hyper-concentrated: LNG carriers are 2.
 but emit 62.6% of all verified methane, and their climate footprint is ~15% larger than CO₂-only
 accounting suggests — the verified signature of **methane slip**. Second, fleet-wide the
 overlooked gas is actually **N₂O**: 2.19 Mt CO₂eq versus 1.82 Mt CO₂eq from methane.
+
+## Observatory modules (v1.1)
+
+| Module | Finding |
+|---|---|
+| **Who owns the methane** | Top 10 of 3,396 DoC holders concentrate **51.3%** of all verified CH₄. Alongside LNG-carrier operators (Seapeak, Dynagas, MOL, Knutsen, Maran Gas), two passenger operators rank in the top 8: **Costa Crociere** (2,557 t, cruise) and **Baleària** (2,201 t, ferries) — LNG-fuelled passenger fleets inherit the methane problem |
+| **Methane-slip fingerprint** | CH₄ intensity of the 351 LNG carriers with usable data clusters exactly on the EU default slip factors (0.2% / 1.7% / 3.1% of fuel mass). The ICCT FUMES campaign measured a real-world average of **6.4%** for LNG Otto 4-stroke engines — twice the highest default and literally off the chart. Verified ≠ measured: reported totals are a lower bound |
+| **The 2026 ETS methane bill** | ETS-scoped CH₄ (30,532 t) and N₂O (4,817 t) equal 2.13 Mt CO₂eq: **€170.5 M/year** at €80 per allowance. Only 15.5% of it comes from LNG carriers, so the bill lands across the whole fleet |
+
+Reference values: EU default slip factors from the FuelEU Maritime / MRV implementing rules;
+real-world slip from ICCT, *Fugitive and Unburned Methane Emissions from Ships (FUMES)*, 2024
+(LPDF 4-stroke plume average 6.42%, median 6.05%).
 
 ## Files
 

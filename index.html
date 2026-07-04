@@ -108,6 +108,38 @@ background:#e4f4ec;color:#2fa36b}
     </div>
   </div>
 
+  <h2 class="section">Who owns the methane</h2>
+  <p class="sub">Verified CH₄ by DoC holder (the company responsible under MRV). The top 10 of
+  <span id="cp-n">–</span> companies hold <strong id="cp-share">–</strong> of all verified methane.</p>
+  <div class="box tall" style="margin-bottom:10px">
+    <h3>Top 15 companies by verified CH₄, 2024</h3>
+    <p class="hint">Red: LNG-carrier operators · amber: cruise / ferry (LNG-fuelled passenger fleets) · navy: other</p>
+    <div class="cwrap" style="height:380px"><canvas id="c-comp"></canvas></div>
+  </div>
+  <div class="note" id="comp-note"></div>
+
+  <h2 class="section">The methane-slip fingerprint</h2>
+  <p class="sub">CH₄ intensity of each LNG carrier (kg CH₄ per tonne of fuel). The clusters sit
+  exactly on the EU default slip factors, and the real-world FUMES average is off the chart.</p>
+  <div class="box tall" style="margin-bottom:10px">
+    <h3>Distribution of CH₄ intensity, LNG carriers</h3>
+    <p class="hint">Dashed lines: EU default slip factors by engine type. Arrow: ICCT FUMES
+    real-world average for LNG Otto 4-stroke engines (6.4% = 64 kg/t), twice the highest default.</p>
+    <div class="cwrap" style="height:360px"><canvas id="c-slip"></canvas></div>
+  </div>
+  <div class="note" id="slip-note"></div>
+
+  <h2 class="section">The 2026 ETS methane bill</h2>
+  <p class="sub">From 2026, CH₄ and N₂O enter the EU Emissions Trading System. The MRV file already
+  reports the ETS-scoped tonnage per gas: the bill is computable today.</p>
+  <div class="stat-row">
+    <div class="chip"><div class="n" id="e-ch4">–</div><div class="l">ETS-scoped CH₄ (t/yr)</div></div>
+    <div class="chip"><div class="n" id="e-n2o">–</div><div class="l">ETS-scoped N₂O (t/yr)</div></div>
+    <div class="chip"><div class="n" id="e-co2eq">–</div><div class="l">CO₂eq to surrender (Mt/yr)</div></div>
+    <div class="chip"><div class="n" id="e-cost">–</div><div class="l">Extra allowance cost / yr</div></div>
+  </div>
+  <div class="note" id="ets-note"></div>
+
   <h2 class="section">Full breakdown by ship type</h2>
   <p class="sub">Ship types with at least 20 full emission reports in 2024, sorted by verified methane.</p>
   <div class="box" style="margin-bottom:22px">
@@ -126,8 +158,8 @@ background:#e4f4ec;color:#2fa36b}
 
 <footer>
   <div class="wrap">
-    <span>Analysis: <strong>Darliane Ribeiro Cunha, PhD</strong></span>
-    <span>Data: EMSA / THETIS-MRV, 2024 reporting period · <span class="pill">verified data</span></span>
+    <span>Developed by <strong>Darliane Cunha, PhD</strong></span>
+    <span>Data source: EMSA / THETIS-MRV, 2024 reporting period · <span class="pill">verified data</span></span>
   </div>
 </footer>
 
@@ -208,12 +240,113 @@ background:#e4f4ec;color:#2fa36b}
           tooltip: { callbacks: { label: function (c) { return c.label + ": " + fmt(c.raw, 2) + " Mt"; } } } } }
     });
 
+    if (D.companies) renderCompanies(D);
+    if (D.slip) renderSlip(D);
+    if (D.ets2026) renderEts(D);
+
     el("t-types").innerHTML = D.by_type.map(function (r) {
       return "<tr><td class='metric'>" + r.type + "</td><td>" + fmt(r.n) + "</td><td>" +
         fmt(r.ch4_t) + "</td><td>" + fmt(r.n2o_t) + "</td><td>" + fmt(r.ch4_berth_t) +
         "</td><td>" + fmt(r.co2_mt, 2) + "</td><td>" + fmt(r.co2eq_mt, 2) +
         "</td><td>+" + r.uplift_pct + "%</td></tr>";
     }).join("");
+  }
+
+  function renderCompanies(D) {
+    var C = D.companies, top = C.top;
+    el("cp-n").textContent = fmt(C.n_companies);
+    el("cp-share").textContent = C.top10_share_pct + "%";
+    var segColor = { lng: BAD, passenger: WARN, other: NAVY };
+    new Chart(el("c-comp"), {
+      type: "bar",
+      data: { labels: top.map(function (r) {
+          return r.name.length > 30 ? r.name.slice(0, 28) + "…" : r.name; }),
+        datasets: [{ data: top.map(function (r) { return r.ch4_t; }),
+          backgroundColor: top.map(function (r) { return segColor[r.segment]; }),
+          borderRadius: 5 }] },
+      options: { responsive: true, maintainAspectRatio: false, indexAxis: "y",
+        plugins: { legend: { display: false },
+          tooltip: { callbacks: {
+            title: function (c) { return top[c[0].dataIndex].name; },
+            label: function (c) { var r = top[c.dataIndex];
+              return fmt(r.ch4_t) + " t CH₄ (" + r.share_pct + "% of fleet) · " +
+                fmt(r.vessels) + " vessels · " + r.main_type; } } } } }
+    });
+    var pax = top.filter(function (r) { return r.segment === "passenger"; });
+    el("comp-note").innerHTML =
+      "<strong>The surprise is who is amber.</strong> Methane is not only an LNG-carrier story: " +
+      pax.map(function (r) { return "<strong>" + r.name + "</strong> (" + fmt(r.ch4_t) +
+        " t, " + r.main_type.toLowerCase() + "s"; }).join(") and ") +
+      ") rank among the top methane emitters in Europe — the verified footprint of LNG-fuelled " +
+      "passenger fleets. As cruise lines and ferry operators convert to LNG for SOx and CO₂ " +
+      "compliance, they inherit the methane problem.";
+  }
+
+  function renderSlip(D) {
+    var S = D.slip, w = S.bin_width;
+    var pts = S.counts.map(function (c, i) { return { x: i * w + w / 2, y: c }; });
+    var refLines = { id: "refLines", afterDraw: function (chart) {
+      var ctx = chart.ctx, area = chart.chartArea, xs = chart.scales.x;
+      ctx.save();
+      S.refs.forEach(function (r) {
+        var x = xs.getPixelForValue(r.kg);
+        ctx.strokeStyle = "#5b6b78"; ctx.setLineDash([5, 4]); ctx.lineWidth = 1.2;
+        ctx.beginPath(); ctx.moveTo(x, area.top); ctx.lineTo(x, area.bottom); ctx.stroke();
+        ctx.setLineDash([]); ctx.fillStyle = "#5b6b78";
+        ctx.font = "600 10.5px 'Segoe UI',Arial";
+        ctx.translate(x - 4, area.top + 4); ctx.rotate(Math.PI / 2);
+        ctx.fillText(r.label, 0, 0); ctx.setTransform(1, 0, 0, 1, 0, 0);
+      });
+      // FUMES arrow, off scale to the right
+      var xr = area.right;
+      ctx.strokeStyle = BAD; ctx.fillStyle = BAD; ctx.lineWidth = 2;
+      var ym = area.top + 18;
+      ctx.beginPath(); ctx.moveTo(xr - 150, ym); ctx.lineTo(xr - 8, ym); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(xr - 8, ym - 5); ctx.lineTo(xr, ym);
+      ctx.lineTo(xr - 8, ym + 5); ctx.closePath(); ctx.fill();
+      ctx.font = "700 11px 'Segoe UI',Arial"; ctx.textAlign = "right";
+      ctx.fillText("FUMES real-world avg: 6.4% = " + S.fumes_kg + " kg/t →", xr - 4, ym + 16);
+      ctx.restore();
+    } };
+    new Chart(el("c-slip"), {
+      type: "bar",
+      data: { datasets: [{ data: pts, backgroundColor: TEAL, borderRadius: 3,
+        barPercentage: 1, categoryPercentage: 1 }] },
+      options: { responsive: true, maintainAspectRatio: false, parsing: false,
+        scales: { x: { type: "linear", min: 0, max: S.bin_max,
+            title: { display: true, text: "kg CH₄ per tonne of fuel" }, grid: { display: false } },
+          y: { title: { display: true, text: "LNG carriers" }, beginAtZero: true } },
+        plugins: { legend: { display: false },
+          tooltip: { callbacks: { title: function (c) {
+              var x = c[0].raw.x; return (x - w / 2) + "–" + (x + w / 2) + " kg CH₄/t fuel"; },
+            label: function (c) { return c.raw.y + " vessels"; } } } } },
+      plugins: [refLines]
+    });
+    el("slip-note").innerHTML =
+      "<strong>Verified ≠ measured.</strong> The distribution is not a bell curve: " +
+      S.share_low_pct + "% of LNG carriers report near-zero methane intensity (high-pressure " +
+      "diesel 2-stroke engines and steam turbines), while the two upper clusters sit on the EU " +
+      "default slip factors of 1.7% and 3.1% (median " + S.median + " kg/t, IQR " + S.p25 + "–" +
+      S.p75 + "). MRV figures follow approved emission factors, and the ICCT " +
+      "<a href='https://theicct.org/publication/fumes-characterizing-methane-emissions-from-lng-fueled-ships-using-drones-helicopters-and-on-board-measurements-jan24/' target='_blank' rel='noopener'>FUMES campaign</a> " +
+      "measured a real-world average of 6.4% for LNG Otto 4-stroke engines — roughly twice the " +
+      "highest default. If FUMES is right, the verified totals on this page are a lower bound.";
+  }
+
+  function renderEts(D) {
+    var E = D.ets2026;
+    el("e-ch4").textContent = fmt(E.ch4_t);
+    el("e-n2o").textContent = fmt(E.n2o_t);
+    el("e-co2eq").textContent = fmt(E.co2eq_mt, 2);
+    el("e-cost").textContent = "€" + fmt(E.cost_meur, 1) + " M";
+    el("ets-note").innerHTML =
+      "<strong>A bill the whole fleet pays.</strong> At the reference price of €" + E.price_eur +
+      " per allowance, ETS-scoped CH₄ and N₂O add <strong>€" + fmt(E.cost_meur, 1) +
+      " million a year</strong> from 2026 (GWP₁₀₀ AR5). Only " + E.lng_share_pct +
+      "% of that CO₂eq comes from LNG carriers — they sail mostly outside ETS scope — so the " +
+      "methane and N₂O bill lands across the entire fleet, not just the gas trade. Companies can " +
+      "be ranked against this cost in the companion tool " +
+      "<a href='https://shipping-carbon-costs.vercel.app/' target='_blank' rel='noopener'>Shipping Carbon Costs</a>.";
   }
 
   fetch("data.json", { cache: "no-store" })

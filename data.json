@@ -7,7 +7,7 @@
       "n2o": 265,
       "basis": "IPCC AR5"
     },
-    "generated": "2026-07-02"
+    "generated": "2026-07-04"
   },
   "totals": {
     "vessels": 14115,
@@ -173,5 +173,182 @@
       "co2eq_mt": 0.928,
       "uplift_pct": 1.57
     }
-  ]
+  ],
+  "companies": {
+    "top": [
+      {
+        "name": "Seapeak Maritime Limited",
+        "vessels": 31,
+        "ch4_t": 6543.7,
+        "share_pct": 10.0,
+        "main_type": "LNG carrier",
+        "segment": "lng"
+      },
+      {
+        "name": "Dynagas Ltd",
+        "vessels": 16,
+        "ch4_t": 6502.0,
+        "share_pct": 10.0,
+        "main_type": "LNG carrier",
+        "segment": "lng"
+      },
+      {
+        "name": "MOL LNG SHIP MANAGEMENT PTE. LTD.",
+        "vessels": 14,
+        "ch4_t": 3889.6,
+        "share_pct": 6.0,
+        "main_type": "LNG carrier",
+        "segment": "lng"
+      },
+      {
+        "name": "Knutsen OAS Shipping AS",
+        "vessels": 21,
+        "ch4_t": 3445.1,
+        "share_pct": 5.3,
+        "main_type": "LNG carrier",
+        "segment": "lng"
+      },
+      {
+        "name": "MARAN GAS MARITIME INC.",
+        "vessels": 28,
+        "ch4_t": 2802.9,
+        "share_pct": 4.3,
+        "main_type": "LNG carrier",
+        "segment": "lng"
+      },
+      {
+        "name": "Costa Crociere S.p.A.",
+        "vessels": 19,
+        "ch4_t": 2557.4,
+        "share_pct": 3.9,
+        "main_type": "Passenger ship",
+        "segment": "passenger"
+      },
+      {
+        "name": "Balearia Eurolineas Maritimas SA",
+        "vessels": 19,
+        "ch4_t": 2201.4,
+        "share_pct": 3.4,
+        "main_type": "Ro-pax ship",
+        "segment": "passenger"
+      },
+      {
+        "name": "GasLog LNG Services Ltd.",
+        "vessels": 18,
+        "ch4_t": 1938.5,
+        "share_pct": 3.0,
+        "main_type": "LNG carrier",
+        "segment": "lng"
+      },
+      {
+        "name": "MSC Cruise Management UK Ltd",
+        "vessels": 20,
+        "ch4_t": 1914.0,
+        "share_pct": 2.9,
+        "main_type": "Passenger ship",
+        "segment": "passenger"
+      },
+      {
+        "name": "Cool Company Management AS",
+        "vessels": 8,
+        "ch4_t": 1588.3,
+        "share_pct": 2.4,
+        "main_type": "LNG carrier",
+        "segment": "lng"
+      },
+      {
+        "name": "Carnival Plc",
+        "vessels": 10,
+        "ch4_t": 1546.1,
+        "share_pct": 2.4,
+        "main_type": "Passenger ship",
+        "segment": "passenger"
+      },
+      {
+        "name": "Thenamaris LNG Inc",
+        "vessels": 9,
+        "ch4_t": 1242.2,
+        "share_pct": 1.9,
+        "main_type": "LNG carrier",
+        "segment": "lng"
+      },
+      {
+        "name": "NLNG Ship Management Ltd",
+        "vessels": 11,
+        "ch4_t": 1216.2,
+        "share_pct": 1.9,
+        "main_type": "LNG carrier",
+        "segment": "lng"
+      },
+      {
+        "name": "Capital Gas Ship Management Corp",
+        "vessels": 11,
+        "ch4_t": 1208.1,
+        "share_pct": 1.9,
+        "main_type": "Gas carrier",
+        "segment": "other"
+      },
+      {
+        "name": "BW Fleet Management A/S",
+        "vessels": 21,
+        "ch4_t": 991.6,
+        "share_pct": 1.5,
+        "main_type": "LNG carrier",
+        "segment": "lng"
+      }
+    ],
+    "n_companies": 3396,
+    "top10_share_pct": 51.3
+  },
+  "slip": {
+    "vessels": 351,
+    "bin_width": 2,
+    "bin_max": 32,
+    "counts": [
+      107,
+      0,
+      2,
+      10,
+      21,
+      3,
+      1,
+      8,
+      45,
+      41,
+      14,
+      9,
+      16,
+      25,
+      36,
+      13
+    ],
+    "median": 17.0,
+    "p25": 0.05,
+    "p75": 24.3,
+    "share_low_pct": 30.5,
+    "share_high_pct": 23.6,
+    "refs": [
+      {
+        "kg": 2,
+        "label": "0.2% EU default · high-pressure diesel 2-stroke"
+      },
+      {
+        "kg": 17,
+        "label": "1.7% EU default · LNG Otto 2-stroke"
+      },
+      {
+        "kg": 31,
+        "label": "3.1% EU default · LNG Otto 4-stroke"
+      }
+    ],
+    "fumes_kg": 64
+  },
+  "ets2026": {
+    "price_eur": 80,
+    "ch4_t": 30532,
+    "n2o_t": 4817,
+    "co2eq_mt": 2.13,
+    "cost_meur": 170.5,
+    "lng_share_pct": 15.5
+  }
 }
