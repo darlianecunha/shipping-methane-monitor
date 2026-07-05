@@ -167,6 +167,16 @@ background:#e4f4ec;color:#2fa36b}
     </table>
   </div>
 
+  <h2 class="section">2024 vs 2025 at a glance</h2>
+  <p class="sub">The full reported footprint of each year, all gases on one scale (Mt CO₂eq,
+  GWP₁₀₀ AR5). 2025 includes the extended MRV scope.</p>
+  <div class="box tall" style="margin-bottom:10px">
+    <h3>Total verified climate footprint by gas</h3>
+    <p class="hint">Stacked contributions of CO₂, CH₄ and N₂O. Hover for the per-gas figures.</p>
+    <div class="cwrap" style="height:340px"><canvas id="c-compare"></canvas></div>
+  </div>
+  <div class="note" id="compare-note"></div>
+
   <h2 class="section">Method &amp; source</h2>
   <div class="note" id="method-note" style="margin-top:10px"></div>
 
@@ -260,6 +270,7 @@ background:#e4f4ec;color:#2fa36b}
     });
 
     if (D.yoy) renderYoy(D);
+    if (D.y2024_totals) renderCompare(D);
     if (D.companies) renderCompanies(D);
     if (D.slip) renderSlip(D);
     if (D.ets2026) renderEts(D);
@@ -301,6 +312,37 @@ background:#e4f4ec;color:#2fa36b}
       "Separately, the 2025 scope extension added " + fmt(Y.new_entrants.vessels) +
       " newly covered vessels (mostly smaller general cargo and offshore ships), bringing " +
       fmt(Y.new_entrants.ch4_t) + " t of additional reported CH₄ outside this comparison.";
+  }
+
+  function renderCompare(D) {
+    var a = D.y2024_totals, b = D.totals;
+    var years = ["2024  ·  " + fmt(a.vessels) + " ships", "2025  ·  " + fmt(b.vessels) + " ships"];
+    function gas(label, key, color) {
+      return { label: label, data: [a[key], b[key]], backgroundColor: color,
+        borderRadius: 3, stack: "s" };
+    }
+    new Chart(el("c-compare"), {
+      type: "bar",
+      data: { labels: years, datasets: [
+        gas("CO₂", "co2_mt", NAVY),
+        gas("CH₄ as CO₂eq", "ch4_co2eq_mt", BAD),
+        gas("N₂O as CO₂eq", "n2o_co2eq_mt", WARN)] },
+      options: { responsive: true, maintainAspectRatio: false,
+        scales: { x: { stacked: true }, y: { stacked: true,
+          title: { display: true, text: "Mt CO₂eq / year" } } },
+        plugins: { legend: { position: "bottom" },
+          tooltip: { callbacks: { label: function (c) {
+            return c.dataset.label + ": " + fmt(c.raw, 2) + " Mt CO₂eq"; } } } } }
+    });
+    var chg = (b.ch4_co2eq_mt / a.ch4_co2eq_mt - 1) * 100;
+    el("compare-note").innerHTML =
+      "<strong>The bottom line.</strong> Reported CO₂ went from " + fmt(a.co2_mt, 1) + " to " +
+      fmt(b.co2_mt, 1) + " Mt, but the methane share of the footprint grew fastest: CH₄ rose from " +
+      fmt(a.ch4_co2eq_mt, 2) + " to " + fmt(b.ch4_co2eq_mt, 2) + " Mt CO₂eq (+" + chg.toFixed(0) +
+      "%), overtaking N₂O (" + fmt(b.n2o_co2eq_mt, 2) + " Mt) as the largest non-CO₂ term in 2025. " +
+      "Part of the increase reflects the extended 2025 scope; the like-for-like comparison at the " +
+      "top of the page isolates it (+" + D.yoy.gases.ch4.pct + "% on the same ships). Under GWP₂₀, " +
+      "every CH₄ figure here would be roughly three times larger.";
   }
 
   function renderCompanies(D) {
