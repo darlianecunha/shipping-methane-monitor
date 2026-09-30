@@ -1,107 +1,114 @@
-# Beyond CO₂ — Verified Methane & N₂O Emissions from EU Shipping (MRV 2024–2025)
+# Shipping Methane Monitor
+
+**Verified CH₄ and N₂O emissions from ships calling at EU ports: two years of evidence from the EU MRV greenhouse-gas fields (2024–2025)**
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21144287.svg)](https://doi.org/10.5281/zenodo.21144287)
+[![Live site](https://img.shields.io/badge/Live-shipping--methane--monitor.vercel.app-2ea44f)](https://shipping-methane-monitor.vercel.app/)
+[![Licence: CC BY 4.0](https://img.shields.io/badge/Licence-CC%20BY%204.0-lightgrey.svg)](LICENSE)
+[![Data: EMSA THETIS-MRV](https://img.shields.io/badge/Data-EMSA%20THETIS--MRV-blue)](https://mrv.emsa.europa.eu/)
 
+<p align="center">
+  <img src="docs/gallery/shot_hero.png" width="820" alt="Shipping Methane Monitor: headline indicators for reporting year 2025">
+</p>
 
-Two-year observatory of the **greenhouse-gas fields in the EU MRV public dataset**.
-Since reporting year 2024, every vessel above 5,000 GT calling at EU ports reports **verified
-CH₄ and N₂O emissions** alongside CO₂ (Regulation (EU) 2023/957); 2025 is the second year, and
-the first under the extended MRV scope. This project aggregates both years and publishes the
-results as a static, dependency-free website.
+## What this is
 
-**Live demo:** [shipping-methane-monitor.vercel.app](https://shipping-methane-monitor.vercel.app/)
+Since reporting year 2024, every vessel above 5,000 GT calling at EU ports must report **verified CH₄ and N₂O emissions** alongside CO₂ (Regulation (EU) 2023/957). This project reads the two public EMSA files (2024 and 2025), aggregates them into one `data.json`, and publishes the result as a static, dependency-free website. It is the first open observatory of these new fields.
 
-## Headline finding (v2): same ships, one year apart
+**Headline finding: decarbonisation is trading CO₂ for methane.** On the 11,453 vessels that filed full reports in both years, verified CO₂ fell 5.1% while verified CH₄ rose 21.2%.
 
-Like-for-like, on the **11,453 vessels** that filed full reports in both years:
-
-| Verified emissions | 2024 → 2025 | Change |
+| Verified emissions, same 11,453 ships | 2024 → 2025 | Change |
 |---|---|---|
 | CO₂ | 131.3 → 124.7 Mt | **−5.1%** |
 | CH₄ | 58,093 → 70,427 t | **+21.2%** |
 | N₂O | 7,390 → 6,990 t | −5.4% |
-| CH₄, LNG carriers only (293) | 34,793 → 41,145 t | +18.3% |
+| CH₄, LNG carriers only (293 ships) | 34,793 → 41,145 t | +18.3% |
 
-**Decarbonisation is trading CO₂ for methane.** Separately, the 2025 scope extension added
-5,211 newly covered vessels (mostly smaller general cargo and offshore ships) with a further
-14,353 t of reported CH₄ outside this comparison.
+Reporting year 2025 in full: 16,664 vessels with full emission reports, 84,779 t of verified CH₄, of which 59.5% from 406 LNG carriers.
 
-## Reporting year 2025 (latest, full emission reports)
+## Gallery
 
-| Indicator | Value |
+| Where the methane comes from | Same ships, one year apart |
 |---|---|
-| Vessels with full emission reports | 16,664 |
-| Verified CH₄ | 84,779 t/yr |
-| Share of fleet CH₄ from LNG carriers | 59.5% |
-| Vessels in the slip analysis | 393 LNG carriers (median 17.3 kg CH₄/t fuel) |
+| <img src="docs/gallery/fig01_ch4_by_type.png" width="420"> | <img src="docs/gallery/fig02_same_ships_yoy.png" width="420"> |
+| **Methane-slip fingerprint** | **Who owns the methane** |
+| <img src="docs/gallery/fig03_slip_fingerprint.png" width="420"> | <img src="docs/gallery/fig04_top_companies.png" width="420"> |
+
+The slip histogram shows CH₄ intensity of LNG carriers clustering on the EU default slip factors (0.2%, 1.7% and 3.1% of fuel mass). The ICCT FUMES campaign measured a real-world average of 6.4% for LNG Otto 4-stroke engines, twice the highest default: reported totals are a lower bound.
 
 ## Observatory modules
 
 | Module | Finding |
 |---|---|
-| **Same ships, one year apart** | The year-on-year table above, computed only on vessels present in both years |
-| **Who owns the methane** | The top 10 DoC holders concentrate ~half of all verified CH₄. Alongside LNG-carrier operators (Seapeak, Dynagas, MOL, Knutsen, Maran Gas), LNG-fuelled passenger fleets (Costa Crociere, Baleària) rank among the top emitters |
-| **Methane-slip fingerprint** | CH₄ intensity of LNG carriers clusters exactly on the EU default slip factors (0.2% / 1.7% / 3.1% of fuel mass). The ICCT FUMES campaign measured a real-world average of **6.4%** for LNG Otto 4-stroke engines — twice the highest default and literally off the chart. Verified ≠ measured: reported totals are a lower bound |
-| **The 2026 ETS methane bill** | ETS-scoped CH₄ (30,532 t) and N₂O (4,817 t) equal 2.13 Mt CO₂eq: **€170.5 M/year** at €80 per allowance. Basis: the 2024 file, the latest in which EMSA populates these fields (the surrender obligation starts with 2026 emissions). Only 15.5% falls on LNG carriers: the bill lands across the whole fleet |
-
-Reference values: EU default slip factors from the FuelEU Maritime / MRV implementing rules;
-real-world slip from ICCT, *Fugitive and Unburned Methane Emissions from Ships (FUMES)*, 2024
-(LPDF 4-stroke plume average 6.42%, median 6.05%).
-
-## Files
-
-| File | Purpose |
-|---|---|
-| `index.html` | Single-page site (Chart.js from CDN, no build step) |
-| `data.json` | Aggregated indicators consumed by the page |
-| `build_data.py` | Regenerates `data.json` from the two EMSA source files |
+| Same ships, one year apart | Year-on-year table above, computed only on vessels present in both years |
+| Who owns the methane | The top 10 DoC holders concentrate 44.8% of all verified CH₄; LNG-fuelled passenger fleets rank alongside LNG-carrier operators |
+| Methane-slip fingerprint | 393 LNG carriers, median 17.3 kg CH₄ per tonne of fuel |
+| The 2026 ETS methane bill | ETS-scoped CH₄ (30,532 t) and N₂O (4,816 t) equal 2.13 Mt CO₂eq: €170.5 M per year at €80 per allowance, based on the 2024 file |
 
 ## Reproducing
 
-1. Download the *Publication of information* files (2024 and 2025 reporting periods) from
-   [EMSA / THETIS-MRV](https://mrv.emsa.europa.eu/) (free, no registration), or via the public
-   API: `/api/public-emission-report/downloadable-files` lists the current versions and
-   `/api/public-emission-report/reporting-period-document/binary/{year}/{version}` downloads them.
-2. Run:
+1. Download the *Publication of information* files for the 2024 and 2025 reporting periods from [EMSA / THETIS-MRV](https://mrv.emsa.europa.eu/) (free, no registration).
+2. Rebuild the aggregated indicators:
 
 ```bash
 python3 build_data.py path/to/mrv_2024.xlsx path/to/mrv_2025.xlsx
 ```
 
-3. Serve locally or deploy:
+3. Preview or deploy the static site:
 
 ```bash
-python3 -m http.server        # local preview at http://localhost:8000
-vercel --prod                 # or import the repo at vercel.com (framework: Other)
+python3 -m http.server        # http://localhost:8000
+vercel --prod                 # or import the repo at vercel.com, framework: Other
 ```
 
-For GitHub Pages: Settings → Pages → deploy from branch, root folder.
+The page fetches `data.json`, so it must be served over HTTP (opening `index.html` directly from disk shows empty cards).
+
+## Repository map
+
+| Path | Content |
+|---|---|
+| `index.html` | Single-page site (Chart.js from CDN, no build step) |
+| `data.json` | Aggregated indicators consumed by the page |
+| `build_data.py` | Regenerates `data.json` from the two EMSA source files |
+| `docs/gallery/` | Figures used in this README |
+| `CITATION.cff` | Citation metadata (GitHub's *Cite this repository* button) |
 
 ## Method notes
 
-- Only **full emission reports** ("Full ERs" sheets) are included; the year-on-year module
-  compares only vessels present in both years, isolating the scope extension of 2025.
-- CO₂eq uses GWP₁₀₀ from IPCC AR5 (CH₄ = 28, N₂O = 265), the values applied by the EU MRV/ETS
-  framework. These were also confirmed empirically from the dataset itself.
-- *Verified* means checked by accredited verifiers against approved monitoring plans; emission
-  factors are fuel-based defaults, so actual methane slip may exceed reported values for some
-  engine types. This makes the CH₄ figures a conservative lower bound.
+- Only **full emission reports** are included; the year-on-year module compares only vessels present in both years, isolating the 2025 scope extension (5,211 newly covered vessels, mostly general cargo and offshore ships).
+- CO₂eq uses GWP₁₀₀ from IPCC AR5 (CH₄ = 28, N₂O = 265), the values applied by the EU MRV/ETS framework.
+- *Verified* means checked by accredited verifiers against approved monitoring plans; emission factors are fuel-based defaults, so actual methane slip may exceed reported values for some engine types.
 - Ship types with fewer than 20 full reports are excluded from the by-type table.
-- ETS-scoped CH₄/N₂O columns are zero in the 2025 file (the ETS surrender obligation for these
-  gases starts with 2026 emissions); the ETS module therefore uses the 2024 file and says so.
+- ETS-scoped CH₄/N₂O columns are empty in the 2025 file (the surrender obligation for these gases starts with 2026 emissions); the ETS module therefore uses the 2024 file.
 
-## Author
+References: EU default slip factors from the FuelEU Maritime and MRV implementing rules; real-world slip from ICCT, *Fugitive and Unburned Methane Emissions from Ships (FUMES)*, 2024.
 
-**Darliane Ribeiro Cunha, PhD**.
-Research: maritime decarbonisation, port sustainability analytics, SDG implementation.
+## Related projects
 
-Related projects: [SDG Port Hub](https://sdgporthub.com) ·
-[CO₂ Liquid Bulk Calculator](https://co2-liquid-bulk-calculator.vercel.app)
+- [shipping-carbon-costs](https://github.com/darlianecunha/shipping-carbon-costs): 3,303 companies ranked by EU ETS carbon cost
+- [vessel-efficiency-ml](https://github.com/darlianecunha/vessel-efficiency-ml): predicting CO₂ efficiency grades from EU MRV data
+- [eu-ports-no2](https://github.com/darlianecunha/eu-ports-no2): NO₂ over European ports from Sentinel-5P
 
-## Licence & citation
+## How to cite
 
-Data: © European Maritime Safety Agency (EMSA), public information.
-Analysis and site: CC-BY 4.0. If you use this work, please cite:
+Metadata in [`CITATION.cff`](CITATION.cff); GitHub's *Cite this repository* button produces APA and BibTeX.
 
-> Cunha, D. R. (2026). *Beyond CO₂: verified methane and nitrous-oxide emissions from ships
-> calling at EU ports — two years of evidence from the EU MRV greenhouse-gas fields (2024–2025).*
+> Cunha, D. R. (2026). *Shipping Methane Monitor: verified CH₄ and N₂O emissions from ships calling at EU ports, EU MRV 2024–2025* (Version 2.0) [Software and dataset]. Zenodo. https://doi.org/10.5281/zenodo.21144287
+
+```bibtex
+@software{cunha2026methane,
+  author    = {Cunha, Darliane Ribeiro},
+  title     = {Shipping Methane Monitor: verified CH4 and N2O emissions from ships calling at EU ports, EU MRV 2024--2025},
+  year      = {2026},
+  version   = {2.0},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.21144287},
+  url       = {https://shipping-methane-monitor.vercel.app/}
+}
+```
+
+## Author and licence
+
+**Darliane Ribeiro Cunha, PhD**. Research: maritime decarbonisation, port sustainability analytics, SDG implementation. [ribeirocunha.com](https://ribeirocunha.com) · [ORCID 0000-0003-2548-1237](https://orcid.org/0000-0003-2548-1237)
+
+Data: © European Maritime Safety Agency (EMSA), public information. Analysis, figures and site: [CC BY 4.0](LICENSE).
