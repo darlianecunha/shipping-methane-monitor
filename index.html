@@ -106,7 +106,7 @@ background:#e4f4ec;color:#2fa36b}
   <div class="grid">
     <div class="box">
       <h3>The fleet-wide warming split</h3>
-      <p class="hint">Non-CO₂ warming in CO₂eq terms: N₂O actually adds more than CH₄</p>
+      <p class="hint" id="c-co2eq-hint">Non-CO₂ warming in CO₂eq terms: CH₄ versus N₂O</p>
       <div class="cwrap"><canvas id="c-split"></canvas></div>
     </div>
     <div class="box">
@@ -201,6 +201,10 @@ background:#e4f4ec;color:#2fa36b}
     return Number(n).toLocaleString("en-GB", { maximumFractionDigits: dec === undefined ? 0 : dec });
   }
   function el(id) { return document.getElementById(id); }
+  function plural(type) {
+    var s = String(type).toLowerCase().replace(/\s*\(.*\)\s*$/, "");
+    return s.replace(/ship$/, "ships").replace(/carrier$/, "carriers").replace(/tanker$/, "tankers").replace(/([^s])$/, "$1s");
+  }
 
   function render(D) {
     var T = D.totals, L = D.lng, B = D.at_berth;
@@ -219,13 +223,23 @@ background:#e4f4ec;color:#2fa36b}
       "% of the fleet) account for <strong>" + L.share_of_fleet_ch4_pct +
       "% of all verified methane</strong>, and their climate footprint is " + L.uplift_pct +
       "% higher than CO₂-only accounting suggests — the verified signature of methane slip. " +
-      "(2) Fleet-wide, the overlooked gas is actually <strong>N₂O</strong>: " +
-      fmt(T.n2o_co2eq_mt, 2) + " Mt CO₂eq versus " + fmt(T.ch4_co2eq_mt, 2) +
-      " Mt CO₂eq from methane.";
+      (T.ch4_co2eq_mt >= T.n2o_co2eq_mt
+        ? "(2) Fleet-wide, methane now outweighs <strong>N₂O</strong>: " +
+          fmt(T.ch4_co2eq_mt, 2) + " Mt CO₂eq versus " + fmt(T.n2o_co2eq_mt, 2) +
+          " Mt CO₂eq" + (D.y2024_totals ? ", a reversal of " + (D.meta.latest_year - 1) +
+          ", when N₂O (" + fmt(D.y2024_totals.n2o_co2eq_mt, 2) + " Mt) still exceeded CH₄ (" +
+          fmt(D.y2024_totals.ch4_co2eq_mt, 2) + " Mt)." : ".")
+        : "(2) Fleet-wide, the overlooked gas is actually <strong>N₂O</strong>: " +
+          fmt(T.n2o_co2eq_mt, 2) + " Mt CO₂eq versus " + fmt(T.ch4_co2eq_mt, 2) +
+          " Mt CO₂eq from methane.");
+    var hint = el("c-co2eq-hint");
+    if (hint) hint.textContent = "Non-CO₂ warming in CO₂eq terms: " +
+      (T.ch4_co2eq_mt >= T.n2o_co2eq_mt ? "CH₄ now adds more than N₂O" : "N₂O adds more than CH₄");
 
     el("method-note").innerHTML =
-      "Source: <strong>" + D.meta.source + "</strong> (file version " + D.meta.source_version +
-      "), the public dataset published by EMSA. Reporting year 2024 was the first in which CH₄ and " +
+      "Source: <strong>" + D.meta.source + "</strong>" +
+      (D.meta.source_version ? " (file version " + D.meta.source_version + ")" : "") +
+      ", the public dataset published by EMSA. Reporting year 2024 was the first in which CH₄ and " +
       "N₂O are reported and verified per vessel under Regulation (EU) 2023/957; 2025 is the second, " +
       "and also the first under the extended MRV scope. The year-on-year module compares only " +
       "vessels present in both years. CO₂eq uses GWP₁₀₀ " +
@@ -369,7 +383,7 @@ background:#e4f4ec;color:#2fa36b}
     el("comp-note").innerHTML =
       "<strong>The surprise is who is amber.</strong> Methane is not only an LNG-carrier story: " +
       pax.map(function (r) { return "<strong>" + r.name + "</strong> (" + fmt(r.ch4_t) +
-        " t, " + r.main_type.toLowerCase() + "s"; }).join(") and ") +
+        " t, " + plural(r.main_type); }).join(") and ") +
       ") rank among the top methane emitters in Europe — the verified footprint of LNG-fuelled " +
       "passenger fleets. As cruise lines and ferry operators convert to LNG for SOx and CO₂ " +
       "compliance, they inherit the methane problem.";
