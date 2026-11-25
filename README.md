@@ -85,7 +85,7 @@ References: EU default slip factors from the FuelEU Maritime and MRV implementin
 
 ## Related projects
 
-- [shipping-carbon-costs](https://github.com/darlianecunha/shipping-carbon-costs): 3,303 companies ranked by EU ETS carbon cost
+- [shipping-carbon-costs](https://github.com/darlianecunha/shipping-carbon-costs): 3,495 companies ranked by EU ETS carbon cost
 - [vessel-efficiency-ml](https://github.com/darlianecunha/vessel-efficiency-ml): predicting CO₂ efficiency grades from EU MRV data
 - [eu-ports-no2](https://github.com/darlianecunha/eu-ports-no2): NO₂ over European ports from Sentinel-5P
 
